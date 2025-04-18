@@ -1,0 +1,28 @@
+<div class="main-container">
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" [opened]="true" [ngClass]="{'expanded': sidenavExpanded, 'collapsed': !sidenavExpanded}">
+      <app-sidebar [isExpanded]="sidenavExpanded" (closeSidenav)="toggleSidenav()"></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+          <span class="spacer"></span>
+          <button mat-button class="toolbar-button">
+            Ayuda
+          </button>
+        <button mat-icon-button class="notification-button">
+          <img src="notifications.png" alt="Notifications" class="notification-icon">
+        </button>
+        <button mat-button class="user-button">
+          <div class="user-info">
+            <div>Bienvenido</div>
+            <div>Eduardo Uriel</div>
+          </div>
+          <img src="logPerson.png" alt="Notifications" class="notification-icon">
+        </button>
+      </mat-toolbar>
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
