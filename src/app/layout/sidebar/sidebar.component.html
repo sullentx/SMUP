@@ -22,10 +22,8 @@
       </a>
     </mat-nav-list>
     
-    <!-- Espacio flexible que empuja el menú inferior al fondo -->
     <div class="flex-spacer"></div>
     
-    <!-- Menú inferior para configuración -->
     <mat-nav-list>
       <a mat-list-item 
          [routerLink]="item.route" 
@@ -33,10 +31,8 @@
          *ngFor="let item of bottomMenuItems" 
          class="nav-item" 
          (click)="$event.stopPropagation()">
-        <!-- Icono Material -->
         <mat-icon *ngIf="item.iconType === 'material'">{{item.icon}}</mat-icon>
         
-        <!-- Imagen personalizada -->
         
         <span *ngIf="isExpanded" class="nav-label">{{item.name}}</span>
       </a>

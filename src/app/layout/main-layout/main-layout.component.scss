@@ -65,7 +65,17 @@ mat-sidenav {
 }
 
 .notification-button {
-  margin: 0 8px;
+  margin-left: 32px;
+  margin-right: 8px;
+  background-color: transparent; 
+  
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  .notification-icon {
+    height: 24px;
+    width: 24px;
+  }
 }
 
 .user-button {
@@ -81,3 +91,76 @@ mat-sidenav {
 .content-container {
   padding: 16px;
 }
+
+
+.toolbar-help {
+  background-color: #E6E6F2;
+  color: #020562; 
+  border-radius: 8px; 
+  padding: 0 16px; 
+  height: 32px;
+  width: 99px;
+  
+  .help-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+  }
+  
+  .help-icon {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.vertical-divider {
+  height: 32px;
+  width: 1px;
+  background-color: #D5D5D5;
+  margin: 0 16px;
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+  margin-left: 8px;
+  
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    order: 1; 
+    
+    .welcome-text {
+      font-size: 12px;
+      opacity: 0.8;
+      line-height: 1.2;
+    }
+    
+    .user-name {
+      font-weight: 500;
+      line-height: 1.2;
+    }
+  }
+  
+  .user-avatar {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%; 
+    order: 2; 
+  }
+  
+  .logout-button {
+    order: 3; 
+    background-color: transparent;
+    border: none;                   
+
+    img {
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
+
