@@ -26,7 +26,7 @@ export class SidebarComponent {
 
   menuItems = [
     { name: 'Registros', iconType: 'image', imgSrc: '/user-circle.png', route: '/proyectos' },    
-    { name: 'Medicamentos', iconType: 'image', imgSrc: '/medical-circle.png', route: '/proyectos' },    
+    { name: 'Medicamentos', iconType: 'image', imgSrc: '/medical-circle.png', route: '/medications' },    
     { name: 'Catálogos', iconType: 'image', imgSrc: '/folder.png', route: '/proyectos' },  
     { name: 'Cuentas', iconType: 'image', imgSrc: '/user-plus-01.png', route: '/proyectos' },    
     { name: 'Estadísticas', iconType: 'image', imgSrc: '/file-07.png', route: '/proyectos' },    
