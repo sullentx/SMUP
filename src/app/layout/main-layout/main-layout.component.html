@@ -1,0 +1,37 @@
+<div class="main-container">
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" [opened]="true" [ngClass]="{'expanded': sidenavExpanded, 'collapsed': !sidenavExpanded}">
+      <app-sidebar [isExpanded]="sidenavExpanded" (closeSidenav)="toggleSidenav()"></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <span class="spacer"></span>
+        <button mat-button class="toolbar-help">
+          <div class="help-content">
+            <img src="Icon.png" alt="Ayuda" class="help-icon">
+            <span>Ayuda</span>
+          </div>
+        </button>
+        <button mat-icon-button class="notification-button">
+          <img src="notifications.png" alt="Notifications" class="notification-icon">
+        </button>
+        
+        <div class="vertical-divider"></div>
+        
+        <div class="user-container">
+          <img src="logPerson.png" alt="Usuario" class="user-avatar">
+          <div class="user-info">
+            <div class="welcome-text">Bienvenido</div>
+            <div class="user-name">{{userName}}</div>
+          </div>
+          <button mat-icon-button class="logout-button" aria-label="Cerrar sesión">
+            <img src="log-out-04.png" alt="Usuario" class="user-avatar">
+          </button>
+        </div>
+    </mat-toolbar>
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

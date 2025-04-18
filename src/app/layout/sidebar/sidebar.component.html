@@ -1,0 +1,41 @@
+<div class="sidebar-container" (click)="!isExpanded && onCloseSidenav()" (click)="isExpanded && onCloseSidenav()">
+  <div class="sidebar-header">
+    <div class="sidebar-header">
+      <div class="logo-container">
+        <img src="logo.png" alt="SMUP Logo" class="logo" [ngStyle]="{'height': isExpanded ? '80px' : '50px', 'width': isExpanded ? '80px' : '50px'}">
+      </div>
+    </div>
+  </div>
+  
+  <div class="sidebar-content">
+    <!-- Menú principal -->
+    <mat-nav-list>
+      <a mat-list-item 
+         [routerLink]="item.route" 
+         routerLinkActive="active"
+         *ngFor="let item of menuItems" 
+         class="nav-item" 
+         (click)="$event.stopPropagation()">
+        <img *ngIf="item.iconType === 'image'" [src]="item.imgSrc" class="custom-icon" alt="{{item.name}}">
+        
+        <span *ngIf="isExpanded" class="nav-label">{{item.name}}</span>
+      </a>
+    </mat-nav-list>
+    
+    <div class="flex-spacer"></div>
+    
+    <mat-nav-list>
+      <a mat-list-item 
+         [routerLink]="item.route" 
+         routerLinkActive="active"
+         *ngFor="let item of bottomMenuItems" 
+         class="nav-item" 
+         (click)="$event.stopPropagation()">
+        <mat-icon *ngIf="item.iconType === 'material'">{{item.icon}}</mat-icon>
+        
+        
+        <span *ngIf="isExpanded" class="nav-label">{{item.name}}</span>
+      </a>
+    </mat-nav-list>
+  </div>
+</div>

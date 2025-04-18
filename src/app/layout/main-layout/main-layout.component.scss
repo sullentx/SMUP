@@ -1,0 +1,166 @@
+.main-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-sidenav-container {
+  flex: 1;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav {
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+  
+  &.expanded {
+    width: 240px;
+  }
+  
+  &.collapsed {
+    width: 60px;
+  }
+}
+
+.notification-icon{
+  height: 24px;
+  width: 24px;
+}
+
+.content-container {
+  padding: 16px;
+  height: calc(100% - 64px);
+  overflow: auto;
+}
+
+
+.main-container {
+  height: 100vh;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav {
+  &.expanded {
+    width: 240px;
+  }
+  
+  &.collapsed {
+    width: 60px;
+  }
+}
+
+.notification-icon {
+  height: 24px;
+  width: auto;
+}
+
+.toolbar-button {
+  margin: 0 8px;
+}
+
+.notification-button {
+  margin-left: 32px;
+  margin-right: 8px;
+  background-color: transparent; 
+  
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  .notification-icon {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  
+  .user-info {
+    text-align: right;
+    margin-right: 8px;
+  }
+}
+
+.content-container {
+  padding: 16px;
+}
+
+
+.toolbar-help {
+  background-color: #E6E6F2;
+  color: #020562; 
+  border-radius: 8px; 
+  padding: 0 16px; 
+  height: 32px;
+  width: 99px;
+  
+  .help-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+  }
+  
+  .help-icon {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.vertical-divider {
+  height: 32px;
+  width: 1px;
+  background-color: #D5D5D5;
+  margin: 0 16px;
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+  margin-left: 8px;
+  
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    order: 1; 
+    
+    .welcome-text {
+      font-size: 12px;
+      opacity: 0.8;
+      line-height: 1.2;
+    }
+    
+    .user-name {
+      font-weight: 500;
+      line-height: 1.2;
+    }
+  }
+  
+  .user-avatar {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%; 
+    order: 2; 
+  }
+  
+  .logout-button {
+    order: 3; 
+    background-color: transparent;
+    border: none;                   
+
+    img {
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
+
