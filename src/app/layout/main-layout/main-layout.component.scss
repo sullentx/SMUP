@@ -6,8 +6,11 @@
 
 mat-sidenav-container {
   flex: 1;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
 }
-
 .spacer {
   flex: 1 1 auto;
 }
@@ -33,9 +36,10 @@ mat-sidenav {
 .content-container {
   padding: 16px;
   height: calc(100% - 64px);
+  width: 100%; 
   overflow: auto;
+  box-sizing: border-box;
 }
-
 
 .main-container {
   height: 100vh;
@@ -53,6 +57,12 @@ mat-sidenav {
   &.collapsed {
     width: 60px;
   }
+}
+
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .notification-icon {
@@ -86,10 +96,6 @@ mat-sidenav {
     text-align: right;
     margin-right: 8px;
   }
-}
-
-.content-container {
-  padding: 16px;
 }
 
 

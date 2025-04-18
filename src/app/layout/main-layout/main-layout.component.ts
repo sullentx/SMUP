@@ -19,7 +19,7 @@ import { MatButton } from '@angular/material/button';
 })
 export class MainLayoutComponent {
   sidenavExpanded = true;
-  userName = 'Eduardo Uriel'; // Example user name
+  userName = 'Eduardo Uriel'; 
   toggleSidenav(): void {
     this.sidenavExpanded = !this.sidenavExpanded;
   }

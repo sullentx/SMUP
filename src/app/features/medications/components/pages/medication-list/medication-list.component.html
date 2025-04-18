@@ -1,0 +1,35 @@
+<div class="medication-list-container">
+    <app-back-button (clicked)="onBack()"></app-back-button>
+  <div class="horizontal-line"></div>
+    <div class="header-container">
+      <h1>Medicamentos</h1>
+    </div>
+    
+    <div class="actions-row">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Buscar</mat-label>
+        <input matInput [(ngModel)]="searchTerm" (keyup)="onSearch()" placeholder="Código o nombre">
+        <button 
+          *ngIf="searchTerm" 
+          matSuffix 
+          mat-icon-button 
+          aria-label="Clear" 
+          (click)="searchTerm=''; onSearch()">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-icon matSuffix *ngIf="!searchTerm">search</mat-icon>
+      </mat-form-field>
+      
+      <app-add-button (clicked)="onAddMedication()"></app-add-button>
+    </div>
+    
+    <app-medication-table
+      [medications]="displayedMedications"
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (edit)="onEditMedication($event)"
+      (delete)="onDeleteMedication($event)"
+      (nextPage)="onNextPage()"
+      (previousPage)="onPreviousPage()">
+    </app-medication-table>
+  </div>
