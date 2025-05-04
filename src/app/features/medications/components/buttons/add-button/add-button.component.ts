@@ -7,12 +7,12 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [MatButtonModule, MatIconModule],
   template: `
-    <button mat-raised-button color="primary" (click)="clicked.emit()">
-      <mat-icon>add</mat-icon>
-      Agregar Medicamento
+    <button  (click)="clicked.emit()">
+      <img src="plus.png" alt="icon">
+      Agregar 
     </button>
   `,
-  styles: []
+  styleUrls: ['./add.scss']
 })
 export class AddButtonComponent {
   @Output() clicked = new EventEmitter<void>();

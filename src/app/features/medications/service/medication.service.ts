@@ -6,13 +6,78 @@ import { Medication } from '../models/medication.model';
   providedIn: 'root'
 })
 export class MedicationService {
-  // Datos de prueba
   private medications: Medication[] = [
-    { id: 1, code: 'MED001', name: 'Paracetamol', description: 'Analgésico y antipirético', stock: 150 },
-    { id: 2, code: 'MED002', name: 'Ibuprofeno', description: 'Antiinflamatorio no esteroideo', stock: 120 },
-    { id: 3, code: 'MED003', name: 'Amoxicilina', description: 'Antibiótico betalactámico', stock: 80 },
-    { id: 4, code: 'MED004', name: 'Omeprazol', description: 'Inhibidor de la bomba de protones', stock: 95 },
-    { id: 5, code: 'MED005', name: 'Loratadina', description: 'Antihistamínico', stock: 110 }
+    { 
+      id: 1, 
+      code: '001', 
+      name: 'Paracetamol', 
+      stock: 150,
+      laboratory: 'Bayer',
+      dosage: '500mg',
+      type: 'Analgésico'
+    },
+    { 
+      id: 2, 
+      code: '002', 
+      name: 'Ibuprofeno', 
+      stock: 120,
+      laboratory: 'Pfizer',
+      dosage: '400mg',
+      type: 'Antiinflamatorio'
+    },
+    { 
+      id: 3, 
+      code: '003', 
+      name: 'Amoxicilina', 
+      stock: 80,
+      laboratory: 'Roche',
+      dosage: '250mg',
+      type: 'Antibiótico'
+    },
+    { 
+      id: 4, 
+      code: '004', 
+      name: 'Omeprazol', 
+      stock: 95,
+      laboratory: 'GSK',
+      dosage: '20mg',
+      type: 'Antiácido'
+    },
+    { 
+      id: 5, 
+      code: '005', 
+      name: 'Loratadina', 
+      stock: 110,
+      laboratory: 'Sanofi',
+      dosage: '10mg',
+      type: 'Antihistamínico'
+    },
+    { 
+      id: 5, 
+      code: '005', 
+      name: 'Loratadina', 
+      stock: 110,
+      laboratory: 'Sanofi',
+      dosage: '10mg',
+      type: 'Antihistamínico'
+    },
+    { 
+      id: 5, 
+      code: '005', 
+      name: 'Loratadina', 
+      stock: 110,
+      laboratory: 'Sanofi',
+      dosage: '10mg',
+      type: 'Antihistamínico'
+    },{ 
+      id: 5, 
+      code: '005', 
+      name: 'Loratadina', 
+      stock: 110,
+      laboratory: 'Sanofi',
+      dosage: '10mg',
+      type: 'Antihistamínico'
+    }
   ];
 
   getMedications(): Observable<Medication[]> {

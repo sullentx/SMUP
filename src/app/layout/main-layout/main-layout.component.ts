@@ -20,7 +20,10 @@ import { MatButton } from '@angular/material/button';
 export class MainLayoutComponent {
   sidenavExpanded = true;
   userName = 'Eduardo Uriel'; 
-  toggleSidenav(): void {
+  toggleSidenav() {
     this.sidenavExpanded = !this.sidenavExpanded;
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 300); 
   }
 }
