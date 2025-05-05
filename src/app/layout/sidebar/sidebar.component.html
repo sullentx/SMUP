@@ -10,30 +10,59 @@
   <div class="sidebar-content">
     <!-- Menú principal -->
     <mat-nav-list>
-      <a mat-list-item 
-         [routerLink]="item.route" 
-         routerLinkActive="active"
-         *ngFor="let item of menuItems" 
-         class="nav-item" 
-         (click)="$event.stopPropagation()">
-        <img *ngIf="item.iconType === 'image'" [src]="item.imgSrc" class="custom-icon" alt="{{item.name}}">
-        
-        <span *ngIf="isExpanded" class="nav-label">{{item.name}}</span>
-      </a>
+      <mat-nav-list>
+
+      
+        <ng-container *ngFor="let item of menuItems">
+          <!-- Item con submenú -->
+          <ng-container *ngIf="item.children; else regularItem">
+            <a mat-list-item class="nav-item"
+               (click)="toggleSubMenu(item.name); $event.stopPropagation()">
+              <img *ngIf="item.iconType === 'image'" [src]="item.imgSrc" class="custom-icon">
+              <span *ngIf="isExpanded" class="nav-label">{{item.name}}</span>
+              <mat-icon *ngIf="isExpanded" class="submenu-arrow">
+                {{ expandedItem === item.name ? 'expand_less' : 'expand_more' }}
+              </mat-icon>
+            </a>
+
+            <div *ngIf="expandedItem === item.name" class="submenu" [ngClass]="{'expanded': isExpanded}">
+              <a mat-list-item 
+                 *ngFor="let child of item.children"
+                 [routerLink]="child.route"
+                 routerLinkActive="active"
+                 class="nav-subitem"
+                 (click)="$event.stopPropagation()">
+                <span *ngIf="isExpanded" class="nav-label">{{ child.name }}</span>
+              </a>
+            </div>
+          </ng-container>
+      
+          <ng-template #regularItem>
+            <a mat-list-item 
+               [routerLink]="item.route" 
+               routerLinkActive="active"
+               class="nav-item" 
+               (click)="$event.stopPropagation()">
+              <img *ngIf="item.iconType === 'image'" [src]="item.imgSrc" class="custom-icon">
+              <span *ngIf="isExpanded" class="nav-label">{{item.name}}</span>
+            </a>
+          </ng-template>
+        </ng-container>
+      </mat-nav-list>
     </mat-nav-list>
-    
+
     <div class="flex-spacer"></div>
     
-    <mat-nav-list>
+    <!-- Menú inferior -->
+    <mat-nav-list class="bottom-menu">
       <a mat-list-item 
+         *ngFor="let item of bottomMenuItems" 
          [routerLink]="item.route" 
          routerLinkActive="active"
-         *ngFor="let item of bottomMenuItems" 
          class="nav-item" 
          (click)="$event.stopPropagation()">
         <mat-icon *ngIf="item.iconType === 'material'">{{item.icon}}</mat-icon>
-        
-        
+        <img *ngIf="item.iconType === 'image'" [src]="item.icon" class="custom-icon">
         <span *ngIf="isExpanded" class="nav-label">{{item.name}}</span>
       </a>
     </mat-nav-list>
