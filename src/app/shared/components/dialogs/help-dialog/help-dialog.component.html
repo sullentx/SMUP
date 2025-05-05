@@ -1,0 +1,28 @@
+<!-- help-dialog.component.html -->
+<div class="help-dialog">
+    <div class="dialog-content">
+      <div class="help-icon">
+        <img src="/pdf.png" alt="Manual PDF" width="40" height="40">
+      </div>
+      <div class="help-text">
+        <h2>{{ data.title }}</h2>
+        <p>{{ data.data || 'Manual de usuario del sistema' }}</p>
+      </div>
+      <div class="action-buttons">
+        <button *ngIf="downloadState === 'initial'" class="download-button" (click)="downloadManual()">
+            Descargar archivo
+            <img src="/download-01.png" alt="" class="download-icon">
+          </button>
+          
+          <!-- Mensaje de éxito - solo visible cuando se ha descargado -->
+          <div *ngIf="downloadState === 'success'" class="success-message">
+            <img src="/palomita-azul.png" alt="Éxito" class="success-icon">
+            <span>Archivo descargado con éxito</span>
+          </div>
+          
+        <button mat-icon-button class="close-button" (click)="onClose()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>

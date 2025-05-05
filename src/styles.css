@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 html, body { height: 100%; width: 100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Poppins, sans-serif; }
+
 
 
 ::ng-deep .custom-dialog-container .mat-dialog-container {
@@ -11,3 +16,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     overflow: hidden !important;
   }
   
+
+  .custom-dialog-container {
+    position: absolute !important;
+    right: 0;
+    top: 50px; 
+    margin: 0 !important;
+  }
+  
+

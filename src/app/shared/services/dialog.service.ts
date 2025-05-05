@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ConfirmationDialogComponent } from '../components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { SuccessDialogComponent } from '../components/dialogs/success-dialog/success-dialog.component';
 import { ErrorDialogComponent } from '../components/dialogs/error-dialog/error-dialog.component';
+import { HelpDialogComponent } from '../components/dialogs/help-dialog/help-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -67,4 +68,26 @@ success(message: string, title: string = '¡Éxito!', image?: string, duration =
       data: { title, message, image }
     });
   }
+
+  // En dialog.service.ts
+/**
+ * Muestra un diálogo de ayuda
+ * @param title Título del diálogo
+ */
+showHelp(title: string = 'Ayuda', data:string): void {
+  this.dialog.open(HelpDialogComponent, {
+    width: '65vw',
+    maxWidth: '760px',
+    height: '100px', 
+    disableClose: false,
+    autoFocus: false,
+    hasBackdrop: false,  
+    panelClass: 'custom-dialog-container',
+    position: { right: '10' },
+    data: { title, data } 
+  });
+}
+
+
+
 }
