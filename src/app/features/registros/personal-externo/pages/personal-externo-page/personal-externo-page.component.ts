@@ -1,0 +1,139 @@
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
+import { MatSortModule, MatSort } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { BackButtonComponent } from '../../../../medications/components/buttons/back-button/back-button.component';
+interface Alumno {
+  id: number;
+  matricula: string;
+  nombres: string;
+  correo: string;
+  fechaNacimiento: Date;
+}
+
+@Component({
+  selector: 'app-personal-externo-page',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDialogModule,
+    FormsModule,
+    BackButtonComponent
+  ],
+   templateUrl: './personal-externo-page.component.html',
+  styleUrl: './personal-externo-page.component.scss'
+})
+export class PersonalExternoPageComponent {
+ displayedColumns: string[] = ['matricula', 'nombres', 'fechaNacimiento'];
+  dataSource = new MatTableDataSource<Alumno>([]);
+  searchTerm = '';
+  sortCriteria = 'nombres';
+  filterCriteria = 'all';
+  
+  originalData: Alumno[] = [];
+
+    @Input() currentPage = 0;
+    @Input() totalPages = 1;
+
+    @Output() nextPage = new EventEmitter<void>();
+    @Output() previousPage = new EventEmitter<void>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor() {}
+
+  ngOnInit(): void {
+    // Cargar datos iniciales
+    this.loadAlumnos();
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  loadAlumnos(): void {
+    this.originalData = [
+      { id: 1, matricula: '0123451', nombres: 'Juan Pérez', correo: 'juan.perez@email.com', fechaNacimiento: new Date(1998, 5, 15) },
+      { id: 2, matricula: '0123452', nombres: 'Adriana Cruz', correo: 'adriana.aa@email.com', fechaNacimiento: new Date(1998, 5, 15) },
+      { id: 3, matricula: '0123453', nombres: 'Lya Chavez', correo: 'Lyaa.aa@email.com', fechaNacimiento: new Date(1998, 5, 15) },
+      { id: 4, matricula: '0123454', nombres: 'Axel Chavez', correo: 'Axelito.ch@email.com', fechaNacimiento: new Date(1998, 5, 15) },
+      { id: 5, matricula: '0123455', nombres: 'Sofia Chavez', correo: 'Soft.ch@email.com', fechaNacimiento: new Date(1998, 5, 15) },
+    ];
+    this.dataSource.data = [...this.originalData];
+  }
+
+  onSearch(): void {
+    if (!this.searchTerm) {
+      this.applyFiltersAndSort();
+      return;
+    }
+    
+    const searchTermLower = this.searchTerm.toLowerCase();
+    const filteredData = this.originalData.filter(alumno => 
+      alumno.matricula.toLowerCase().includes(searchTermLower) ||
+      alumno.nombres.toLowerCase().includes(searchTermLower) ||
+      alumno.correo.toLowerCase().includes(searchTermLower)
+    );
+    
+    this.dataSource.data = filteredData;
+    this.applyFiltersAndSort(filteredData);
+  }
+
+  sortBy(criteria: string): void {
+    this.sortCriteria = criteria;
+    this.applyFiltersAndSort();
+  }
+
+  filterBy(criteria: string): void {
+    this.filterCriteria = criteria;
+    this.applyFiltersAndSort();
+  }
+
+  applyFiltersAndSort(data: Alumno[] = this.originalData): void {
+    let filteredData = [...data];
+    
+    if (this.filterCriteria !== 'all') {
+      filteredData = filteredData.filter(alumno => {
+        switch (this.filterCriteria) {
+          case 'ingenieria':
+          default:
+            return true;
+        }
+      });
+    }
+    
+    filteredData.sort((a, b) => {
+      switch (this.sortCriteria) {
+        case 'matricula':
+          return a.matricula.localeCompare(b.matricula);
+        case 'nombres':
+          return a.fechaNacimiento.getTime() - b.fechaNacimiento.getTime();
+        default:
+          return 0;
+      }
+    });
+    
+    this.dataSource.data = filteredData;
+  }
+
+  onBack(): void {
+    window.history.back();
+  }
+}

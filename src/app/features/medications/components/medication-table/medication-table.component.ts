@@ -21,7 +21,8 @@ export class MedicationTableComponent {
     'dosage',   // Dosis
     'type',     // Tipo de Medicamento
     'actions'   // Acciones
-  ];  @Input() currentPage = 0;
+  ]; 
+  @Input() currentPage = 0;
   @Input() totalPages = 1;
   
   @Output() edit = new EventEmitter<Medication>();

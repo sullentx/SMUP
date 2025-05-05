@@ -31,6 +31,26 @@ export const routes: Routes = [
           }
         ]
       },
+      {
+        path: 'registros/alumnos',
+        loadComponent: () => import('./features/registros/alumnos/pages/alumnos-page/alumnos-page.component')
+          .then(c => c.AlumnosPageComponent)
+      },
+      {
+        path: 'registros/up',
+        loadComponent: () => import('./features/registros/personal-up/pages/personal-up-page/personal-up-page.component')
+          .then(c => c.PersonalUpPageComponent)
+      },
+      {
+        path: 'registros/pasantes',
+        loadComponent: () => import('./features/registros/pasantes/pages/pasantes-page/pasantes-page.component')
+          .then(c => c.PasantesPageComponent)
+      },
+      {
+        path: 'registros/externo',
+        loadComponent: () => import('./features/registros/personal-externo/pages/personal-externo-page/personal-externo-page.component')
+          .then(c => c.PersonalExternoPageComponent)
+      },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
   }

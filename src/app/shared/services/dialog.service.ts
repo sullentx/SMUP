@@ -27,7 +27,6 @@ export class DialogService {
       height: '120px',
       disableClose: true,
       autoFocus: false,
-      panelClass: 'custom-dialog-container',
       data: { title, message,image }
     });
 
@@ -64,7 +63,6 @@ success(message: string, title: string = '¡Éxito!', image?: string, duration =
       height: '120px',
       disableClose: true,
       autoFocus: false,
-      panelClass: 'custom-dialog-container',
       data: { title, message, image }
     });
   }
