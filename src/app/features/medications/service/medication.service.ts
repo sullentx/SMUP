@@ -87,25 +87,35 @@ export class MedicationService {
   getMedication(id: number): Observable<Medication | undefined> {
     return of(this.medications.find(med => med.id === id));
   }
-
-  addMedication(medication: Medication): Observable<Medication> {
-    const newId = Math.max(...this.medications.map(m => m.id || 0)) + 1;
-    const newMedication = { ...medication, id: newId };
-    this.medications.push(newMedication);
-    return of(newMedication);
-  }
-
-  updateMedication(medication: Medication): Observable<Medication> {
-    const index = this.medications.findIndex(m => m.id === medication.id);
-    if (index !== -1) {
-      this.medications[index] = medication;
+  addMedication(medication: Medication): Observable<{ success: boolean, medication?: Medication }> {
+    // Genera el code automáticamente
+    const code = 'MED-' + (Math.floor(Math.random() * 90000) + 10000); // Ejemplo simple
+    const isValid = medication.name && medication.laboratory && medication.dosage && medication.type && medication.stock !== undefined;
+    if (!isValid) {
+      return of({ success: false });
     }
-    return of(medication);
+    const newId = Math.max(...this.medications.map(m => m.id || 0)) + 1;
+    const newMedication = { ...medication, id: newId, code };
+    this.medications.push(newMedication);
+    return of({ success: true, medication: newMedication });
   }
-
-  deleteMedication(id: number): Observable<boolean> {
+  
+  updateMedication(medication: Medication): Observable<{ success: boolean, medication?: Medication }> {
+    const index = this.medications.findIndex(m => m.id === medication.id);
+    // Busca el code original
+    const original = this.medications[index];
+    const isValid = medication.name && original?.code && medication.laboratory && medication.dosage && medication.type && medication.stock !== undefined;
+    if (index !== -1 && isValid) {
+      // Mantén el code original
+      this.medications[index] = { ...medication, code: original.code };
+      return of({ success: true, medication: this.medications[index] });
+    }
+    return of({ success: false });
+  }
+  
+  deleteMedication(id: number): Observable<{ success: boolean }> {
     const initialLength = this.medications.length;
     this.medications = this.medications.filter(m => m.id !== id);
-    return of(initialLength > this.medications.length);
+    return of({ success: initialLength > this.medications.length });
   }
 }

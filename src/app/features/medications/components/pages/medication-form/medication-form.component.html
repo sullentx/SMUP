@@ -1,0 +1,124 @@
+<div class="medication-form-container">
+  <div class="button-group">
+    <app-back-button (clicked)="onBack()"></app-back-button>
+  </div>
+  <div class="horizontal-line"></div>
+  <div class="header-container">
+    <h1>Medicamentos</h1>
+  </div>
+
+  <div class="subtitle">
+    <img src="/botiquin.png" alt="" class="icon">
+    <h1>{{ title }}</h1>
+    <span>Administración de medicamentos</span>
+  </div>
+  
+  <form [formGroup]="medicationForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-columns">
+      <!-- Columna izquierda -->
+      <div class="form-column">
+        <!-- Nombre del medicamento -->
+        <div class="custom-input-container">
+          <label for="name">Nombre del medicamento</label>
+          <div class="input-wrapper" [class.focused]="nameFocused" [class.error]="isFieldInvalid('name')">
+            <input 
+              type="text" 
+              id="name" 
+              formControlName="name" 
+              placeholder="Ej. Paracetamol" 
+              (focus)="nameFocused = true" 
+              (blur)="nameFocused = false">
+          </div>
+          <div class="error-message" *ngIf="isFieldInvalid('name')">
+            El nombre es obligatorio
+          </div>
+        </div>
+
+        <!-- Nombre del laboratorio -->
+        <div class="custom-input-container">
+          <label for="laboratory">Nombre del laboratorio</label>
+          <div class="input-wrapper" [class.focused]="laboratoryFocused" [class.error]="isFieldInvalid('laboratory')">
+            <input 
+              type="text" 
+              id="laboratory" 
+              formControlName="laboratory" 
+              placeholder="Ej. Bayer" 
+              (focus)="laboratoryFocused = true" 
+              (blur)="laboratoryFocused = false">
+          </div>
+          <div class="error-message" *ngIf="isFieldInvalid('laboratory')">
+            El laboratorio es obligatorio
+          </div>
+        </div>
+
+        <!-- Cantidad -->
+        <div class="custom-input-container">
+          <label for="stock">Cantidad</label>
+          <div class="input-wrapper" [class.focused]="stockFocused" [class.error]="isFieldInvalid('stock')">
+            <input 
+              type="number" 
+              id="stock" 
+              formControlName="stock" 
+              placeholder="Ej. 100" 
+              (focus)="stockFocused = true" 
+              (blur)="stockFocused = false">
+          </div>
+          <div class="error-message" *ngIf="formControls['stock'].hasError('required') && isFieldInvalid('stock')">
+            La cantidad es obligatoria
+          </div>
+          <div class="error-message" *ngIf="formControls['stock'].hasError('min') && isFieldInvalid('stock')">
+            La cantidad debe ser un valor positivo
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna derecha -->
+      <div class="form-column">
+        <!-- Dosis -->
+        <div class="custom-input-container">
+          <label for="dosage">Dosis</label>
+          <div class="input-wrapper" [class.focused]="dosageFocused" [class.error]="isFieldInvalid('dosage')">
+            <input 
+              type="text" 
+              id="dosage" 
+              formControlName="dosage" 
+              placeholder="Ej. 500mg" 
+              (focus)="dosageFocused = true" 
+              (blur)="dosageFocused = false">
+          </div>
+          <div class="error-message" *ngIf="isFieldInvalid('dosage')">
+            La dosis es obligatoria
+          </div>
+        </div>
+
+        <!-- Tipo -->
+        <div class="custom-input-container">
+          <label for="type">Tipo de Medicamento</label>
+          <div class="input-wrapper" [class.focused]="typeFocused" [class.error]="isFieldInvalid('type')">
+            <input 
+              type="text"
+              id="type" 
+              formControlName="type"
+              placeholder="Ej. Analgésico"
+              (focus)="typeFocused = true" 
+              (blur)="typeFocused = false">
+          </div>
+          <div class="error-message" *ngIf="isFieldInvalid('type')">
+            El tipo es obligatorio
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón de acción -->
+    <div class="actions">
+      <button 
+        type="submit" 
+        class="submit-button"
+        [disabled]="medicationForm.invalid">
+        <img src="/plus.png" alt="agregar" class="button-icon">
+        {{ submitButtonText }}
+      </button>
+    </div>
+  </form>
+</div>
