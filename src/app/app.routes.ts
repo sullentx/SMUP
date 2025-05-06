@@ -57,9 +57,9 @@ export const routes: Routes = [
           .then(c => c.ProfilePageComponent)
       },
       {
-        path:'surveys',
-        loadComponent:() => import('./features/surveys/components/pages/surveys-home/surveys-home.component')
-        .then(c => c.SurveysHomeComponent)
+        path: 'surveys',
+        loadComponent: () => import('./features/surveys/components/pages/surveys-home/surveys-home.component')
+          .then(c => c.SurveysHomeComponent)
       },
       {
         path: 'surveys/create',
@@ -75,6 +75,17 @@ export const routes: Routes = [
         path: 'surveys/create-question',
         loadComponent: () => import('./features/surveys/components/pages/create-question/create-question.component')
           .then(c => c.CreateQuestionComponent)
+      },
+      // Añade estas rutas a tu archivo existente
+      {
+        path: 'surveys/select-survey',
+        loadComponent: () => import('./features/surveys/components/pages/select-survey/select-survey.component')
+          .then(c => c.SelectSurveyComponent)
+      },
+      {
+        path: 'surveys/notify-respondents/:surveyId',
+        loadComponent: () => import('./features/surveys/components/pages/notify-respondents/notify-respondents.component')
+          .then(c => c.NotifyRespondentsComponent)
       },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]

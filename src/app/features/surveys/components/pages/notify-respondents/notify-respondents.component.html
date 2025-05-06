@@ -1,0 +1,68 @@
+<div class="header-actions">
+    <div class="left-section">
+      <app-back-button (clicked)="onBack()"></app-back-button>
+    </div>
+    <div class="right-section">
+        
+    </div>
+  </div>
+  
+  <div class="horizontal-line"></div>
+  
+  <div class="container">
+      <div class="header-container">
+        <img src="/notification-text (1).png" alt="" class="header-icon">
+        <h1>Notificación a encuestados</h1>
+      </div>
+      <div class="txt">
+        <h1>Encuestas</h1>
+  
+      </div>
+  
+      <div class="content-container">
+        <div class="list-box">
+          <div class="list-header">
+            <div class="table-header">
+              <div class="column column-name">Nombre</div>
+              <div class="column column-date">Fecha de Inicio</div>
+              <div class="column column-date">Fecha de Cierre</div>
+            </div>
+          </div>
+          
+          <div class="list-content">
+            <div *ngIf="filteredSurveys.length === 0" class="empty-message">
+              No se encontraron encuestas disponibles
+            </div>
+            
+            <div 
+              *ngFor="let survey of filteredSurveys" 
+              class="list-item"
+              [ngClass]="{'selected': selectedSurveyId === survey.id}"
+              (click)="selectSurvey(survey.id)">
+              
+              <div class="checkbox-container">
+                <input 
+                  type="checkbox" 
+                  [id]="'survey-' + survey.id" 
+                  [checked]="selectedSurveyId === survey.id"
+                  (change)="selectSurvey(survey.id)">
+                <label [for]="'survey-' + survey.id"></label>
+              </div>
+              
+              <div class="table-row">
+                <div class="column column-name">
+                  <h3>{{survey.title}}</h3>
+                </div>
+                <div class="column column-date">
+                  {{survey.startDate | date:'dd/MM/yyyy'}}
+                </div>
+                <div class="column column-date">
+                  {{survey.endDate | date:'dd/MM/yyyy'}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  

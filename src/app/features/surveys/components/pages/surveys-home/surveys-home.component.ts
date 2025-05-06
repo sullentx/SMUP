@@ -28,4 +28,8 @@ export class SurveysHomeComponent {
   onCreateQuestion(): void {
     this.router.navigate(['/surveys/create-question']);
   }
+
+  onNotifyRespondents(): void {
+  this.router.navigate(['/surveys/select-survey']);
+  }
 }
