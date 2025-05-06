@@ -1,0 +1,98 @@
+.confirmation-dialog {
+  background-color: #034078;
+  color: #ffffff;
+  width: 95vw;
+  max-width: 1300px;
+  height: 120px;
+  border-radius: 8px;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  padding: 0;
+}
+
+.dialog-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.custom-icon-image {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.text-section {
+  flex-grow: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.text-section h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.text-section .message {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.dialog-actions {
+  display: flex;
+  align-items: center;
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+}
+
+.close-button mat-icon {
+  font-size: 24px;
+  line-height: 24px;
+}

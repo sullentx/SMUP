@@ -10,6 +10,9 @@ import { MedicationService } from '../../../service/medication.service';
 import { MedicationTableComponent } from '../../medication-table/medication-table.component';
 import { BackButtonComponent } from '../../buttons/back-button/back-button.component';
 import { AddButtonComponent } from '../../buttons/add-button/add-button.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButton } from '@angular/material/button';
+import { DialogService } from '../../../../../shared/services/dialog.service';
 @Component({
   selector: 'app-medication-list',
   standalone: true,
@@ -21,8 +24,11 @@ import { AddButtonComponent } from '../../buttons/add-button/add-button.componen
     MatIconModule,
     MedicationTableComponent,
     AddButtonComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    MatMenuModule,
+    MatButton
   ],
+  providers: [DialogService],
   templateUrl: './medication-list.component.html',
   styleUrls: ['./medication-list.component.scss']
 })
@@ -33,10 +39,13 @@ export class MedicationListComponent implements OnInit {
   currentPage = 0;
   pageSize = 5;
   totalPages = 1;
-
+  sortCriteria = 'name';
+  filterCriteria = 'all';
+  
   constructor(
     private medicationService: MedicationService,
-    private router: Router
+    private router: Router,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -87,31 +96,77 @@ export class MedicationListComponent implements OnInit {
   }
 
   onAddMedication(): void {
-    // Por ahora solo mostrará un mensaje
-    alert('Función para agregar medicamento');
-    // Posteriormente: this.router.navigate(['medications', 'new']);
+    this.router.navigate(['/medications/new']);
   }
 
   onEditMedication(medication: Medication): void {
-    // Por ahora solo mostrará un mensaje
-    alert(`Editar medicamento: ${medication.name}`);
-    // Posteriormente: this.router.navigate(['medications', medication.id]);
+    this.router.navigate(['/medications', medication.id]);
   }
 
   onDeleteMedication(id: number | undefined): void {
     if (!id) return;
-    
-    if (confirm('¿Está seguro que desea eliminar este medicamento?')) {
-      this.medicationService.deleteMedication(id).subscribe(success => {
-        if (success) {
-          this.loadMedications();
-        }
-      });
-    }
+  
+    this.dialogService.confirm(
+      'Asegúrate de revisar que el medicamento no esté asociado a recetas o a principios activos.',
+      '¿Está seguro que desea eliminar este medicamento?',
+      '/trash.png'
+    ).subscribe(result => {
+      if (result) {
+        this.medicationService.deleteMedication(id).subscribe(success => {
+          if (success) {
+            this.loadMedications();
+            this.dialogService.success(
+              'Se ha eliminado correctamente el medicamento.',
+              '¡Medicamento eliminado!',
+              '/palomita.png'
+            );
+          } else {
+            this.dialogService.error(
+              'Ocurrió un error al eliminar el medicamento. Intente nuevamente.',
+              'Error',
+              '/error.png' // Usa aquí tu imagen personalizada de error si la tienes
+            );
+          }
+        }, error => {
+          this.dialogService.error(
+            'El medicamento no se puede eliminar porque está en uso.',
+            '¡No se puede eliminar!',
+            '/error.png' // Usa aquí tu imagen personalizada de error si la tienes
+          );
+        });
+      }
+    });
+  }
+  
+  onSortChange(): void {
+    this.currentPage = 0;
+    this.applyFilters();
+  }
+  
+  onFilterChange(): void {
+    this.currentPage = 0;
+    this.applyFilters();
   }
 
   onBack(): void {
-    // Por ahora solo volveremos al inicio
     this.router.navigate(['/']);
+  }
+
+  sortBy(criteria: string): void {
+    this.sortCriteria = criteria;
+    this.onSortChange();
+  }
+  
+  filterBy(criteria: string): void {
+    this.filterCriteria = criteria;
+    this.onFilterChange();
+  }
+  
+  isSortActive(): boolean {
+    return this.sortCriteria !== 'name'; // Asumiendo que 'name' es el valor predeterminado
+  }
+  
+  isFilterActive(): boolean {
+    return this.filterCriteria !== 'all'; // Asumiendo que 'all' es el valor predeterminado
   }
 }

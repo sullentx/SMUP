@@ -1,0 +1,257 @@
+.container {
+  width: 1480px;
+  height: 620px;
+  max-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+  
+  .header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .left-section {
+      display: flex;
+      align-items: center;
+    }
+    
+    .right-section {
+      display: flex;
+      gap: 16px;
+    }
+  }
+  
+  .horizontal-line {
+    width: 100%;
+    height: 1px;
+    background-color: #636161;
+    margin: 16px 0;
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+      
+    .header-icon {
+      width: 28px;
+      height: 28px;
+      margin-right: 12px;
+    }
+    
+    h1 {
+      font-family: Poppins, sans-serif;
+      font-weight: bolder;
+      font-size: 24px;
+      margin: 0;
+      color: #03067B;
+    }
+  }
+  
+  .txt{
+    h1{
+      font-family: Poppins, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0;
+      color: #000000;
+    }
+  }
+  
+  // ... (resto del código CSS sin cambios)
+
+.content-container {
+  margin-bottom: 24px;
+}
+
+.list-box {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 500px; 
+}
+
+.list-header {
+  padding: 16px 20px;
+  color: rgb(0, 0, 0);
+  
+  .table-header {
+    display: flex;
+    align-items: center;
+    
+    .column {
+      font-weight: 600;
+      font-size: 16px;
+    }
+  }
+}
+
+.list-content {
+  padding: 0;
+  flex: 1;
+  overflow-y: auto; 
+}
+
+  
+  .empty-message {
+    text-align: center;
+    padding: 48px 0;
+    color: #666;
+    font-style: italic;
+  }
+  
+  .list-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: #f5f9ff;
+    }
+    
+    &.selected {
+      background-color: rgba(3, 64, 120, 0.05);
+    }
+    
+    .checkbox-container {
+      margin-right: 16px;
+      
+      input[type="checkbox"] {
+        display: none;
+        
+        & + label {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border: 2px solid #034078;
+          border-radius: 4px;
+          position: relative;
+          cursor: pointer;
+          
+          &:after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            top: 2px;
+            left: 6px;
+            opacity: 0;
+            transition: all 0.2s ease;
+          }
+        }
+        
+        &:checked + label {
+          background-color: #034078;
+          
+          &:after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    
+    .table-row {
+      display: flex;
+      flex: 1;
+      align-items: center;
+    }
+    
+    .column {
+      padding: 0 10px;
+      
+      &.column-name {
+        flex: 2;
+        
+        h3 {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 500;
+          color: #000000;
+        }
+      }
+      
+      &.column-date {
+        flex: 1;
+        text-align: center;
+        color: #000000;
+        font-size: 14px;
+      }
+    }
+  }
+  
+  .next-button {
+    padding: 10px 24px;
+    background-color: #034078;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: darken(#034078, 10%);
+      transform: translateY(-2px);
+    }
+    
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+  
+  /* Ajuste del encabezado de la tabla para que coincida con el contenido */
+  .table-header {
+    display: flex;
+    padding-left: 48px; /* Espacio para el checkbox */
+    
+    .column {
+      padding: 0 10px;
+      
+      &.column-name {
+        flex: 2;
+      }
+      
+      &.column-date {
+        flex: 1;
+        text-align: center;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .table-row, .table-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .column {
+      padding: 5px 0;
+      
+      &.column-name, &.column-date {
+        width: 100%;
+        text-align: left;
+      }
+      
+      &.column-date {
+        margin-top: 4px;
+      }
+    }
+    
+    .list-item {
+      padding: 16px 12px;
+    }
+  }

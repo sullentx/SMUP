@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="header-actions">
+      <div class="left-section">
+        <app-back-button (clicked)="onBack()"></app-back-button>
+      </div>
+      <div class="right-section">
+        <button class="cancel-button" (click)="onCancel()">Cancelar</button>
+        <button class="save-button" (click)="onSave()">Guardar</button>
+      </div>
+    </div>
+    
+    <div class="horizontal-line"></div>
+    
+    <div class="header-container">
+        <img src="/file-plus-02 (1).png" alt="" class="header-icon">
+      <h1>Crear Encuesta</h1>
+    </div>
+    
+    <div class="survey-form-container">
+      <form [formGroup]="surveyForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="startDate">Fecha de inicio</label>
+            <div class="date-input-container">
+              <input 
+                type="date" 
+                id="startDate" 
+                formControlName="startDate" 
+                class="date-input">
+              <img src="/calendar-date.png" alt="Calendario" class="calendar-icon">
+            </div>
+            <div class="error-message" *ngIf="surveyForm.get('startDate')?.invalid && surveyForm.get('startDate')?.touched">
+              La fecha de inicio es obligatoria
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="endDate">Fecha de cierre</label>
+            <div class="date-input-container">
+              <input 
+                type="date" 
+                id="endDate" 
+                formControlName="endDate" 
+                class="date-input">
+              <img src="/calendar-date.png" alt="Calendario" class="calendar-icon">
+            </div>
+            <div class="error-message" *ngIf="surveyForm.get('endDate')?.invalid && surveyForm.get('endDate')?.touched">
+              La fecha de cierre es obligatoria
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group full-width">
+          <label for="description">Descripción</label>
+          <textarea 
+            id="description" 
+            formControlName="description" 
+            rows="4" 
+            placeholder="Ingrese una descripción para esta encuesta..."></textarea>
+          <div class="error-message" *ngIf="surveyForm.get('description')?.invalid && surveyForm.get('description')?.touched">
+            La descripción es obligatoria (mínimo 10 caracteres)
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

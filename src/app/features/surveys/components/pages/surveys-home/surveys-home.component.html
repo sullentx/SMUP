@@ -1,0 +1,53 @@
+<div class="button-group">
+  <app-back-button (clicked)="onBack()"></app-back-button>
+</div>
+<div class="horizontal-line"></div>
+<div class="header-container">
+  <h1>Encuestas</h1>
+</div>
+
+
+<div class="main-conteiner">
+
+  <div class="button-conteiner">
+
+    <button class="button" (click)="onCreateSurvey()">
+      <img src="/file-plus-02.png" alt="add icon" class="icon" />
+      Crear Encuesta
+    </button>
+
+    <button class="button">
+      <img src="/file-attachment-04.png" alt="add icon" class="icon" />
+      Gestionar encuestas existentes </button>
+    <button class="button" (click)="onCreateSurvey()">
+      <img src="/file-check-02.png" alt="add icon" class="icon" />
+      Gestionar encuestas de
+      satisfacción</button>
+    <button class="button" (click)="onAssignQuestions()">
+      <img src="/file-plus-02.png" alt="add icon" class="icon" />
+      Asignar preguntas a 
+encuestas</button>
+    <button class="button" (click)="onCreateSurvey()">
+      <img src="/file-attachment-04.png" alt="add icon" class="icon" />
+      Gestionar preguntas existentes</button>
+
+    <button class="button" (click)="onCreateSurvey()">
+      <img src="/file-check-02.png" alt="add icon" class="icon" />
+      Ver y analizar resultados
+de encuestas</button>
+
+    <button class="button" (click)="onCreateSurvey()">
+      <img src="/file-plus-01.png" alt="add icon" class="icon" />
+      Gestionar encuestas de
+      satisfacción</button>
+    <button class="button" (click)="onNotifyRespondents()">
+      <img src="/notification-text.png" alt="add icon" class="icon" />
+      Notificar encuestas a usuarios</button>
+    <button class="button" (click)="onCreateQuestion()">
+      <img src="/file-plus-02.png" alt="add icon" class="icon" />
+      Crear nuevas preguntas
+      para encuestas</button>
+  </div>
+
+
+</div>

@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="button-group">
+      <app-back-button (clicked)="onBack()"></app-back-button>
+    </div>
+    <div class="horizontal-line"></div>
+  
+      <div class="header">
+        <h1>Personal Externo</h1>
+  
+      </div>
+    
+      <div class="actions-row">
+        <div class="custom-search-container">
+          <div class="search-input-wrapper">
+            <img src="/search.png" alt="Buscar" class="search-icon">
+            <input 
+              type="text"
+              [(ngModel)]="searchTerm"
+              (keyup)="onSearch()"
+              placeholder="Buscar alumno..."
+              class="search-input">
+            <button 
+              *ngIf="searchTerm" 
+              class="clear-button"
+              (click)="searchTerm=''; onSearch()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+        
+        <div class="filters-container">
+          <button mat-button [matMenuTriggerFor]="sortMenu" class="custom-icon-button">
+            <span>Ordenar Por</span>
+            <img src="/selector.png" alt="Ordenar" class="custom-icon">
+          </button>
+          <mat-menu #sortMenu="matMenu">
+            <button mat-menu-item (click)="sortBy('matricula')">
+              <span>Matrícula</span>
+              <mat-icon *ngIf="sortCriteria === 'matricula'">check</mat-icon>
+            </button>
+            <button mat-menu-item (click)="sortBy('nombres')">
+              <span>Nombre</span>
+              <mat-icon *ngIf="sortCriteria === 'nombres'">check</mat-icon>
+            </button>
+            <button mat-menu-item (click)="sortBy('carrera')">
+              <span>Carrera</span>
+              <mat-icon *ngIf="sortCriteria === 'carrera'">check</mat-icon>
+            </button>
+            <button mat-menu-item (click)="sortBy('fechaNacimiento')">
+              <span>Fecha de nacimiento</span>
+              <mat-icon *ngIf="sortCriteria === 'fechaNacimiento'">check</mat-icon>
+            </button>
+          </mat-menu>
+    
+          <div class="vertical-divider"></div>
+          
+          <button mat-button [matMenuTriggerFor]="filterMenu" class="custom-icon-button">
+            <span>Filtrar Por</span>
+            <img src="/filter.png" alt="Filtrar" class="custom-icon">
+          </button>
+          <mat-menu #filterMenu="matMenu">
+            <button mat-menu-item (click)="filterBy('all')">
+              <span>Todos</span>
+              <mat-icon *ngIf="filterCriteria === 'all'">check</mat-icon>
+            </button>
+            <button mat-menu-item (click)="filterBy('ingenieria')">
+              <span>Ingeniería</span>
+              <mat-icon *ngIf="filterCriteria === 'ingenieria'">check</mat-icon>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <!-- Matrícula Column -->
+          <ng-container matColumnDef="matricula">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Matrícula </th>
+            <td mat-cell *matCellDef="let alumno"> {{alumno.matricula}} </td>
+          </ng-container>
+    
+          <!-- Nombres Column -->
+          <ng-container matColumnDef="nombres">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombres </th>
+            <td mat-cell *matCellDef="let alumno" class="name-column"> 
+              <div>{{alumno.nombres}}</div>
+              <div class="email">{{alumno.correo}}</div>
+            </td>
+          </ng-container>
+    
+          <!-- Carrera Column -->
+          <ng-container matColumnDef="carrera">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Carrera </th>
+            <td mat-cell *matCellDef="let alumno"> {{alumno.carrera}} </td>
+          </ng-container>
+    
+          <!-- Fecha Nacimiento Column -->
+          <ng-container matColumnDef="fechaNacimiento">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de Nacimiento </th>
+            <td mat-cell *matCellDef="let alumno"> {{alumno.fechaNacimiento | date:'dd/MM/yyyy'}} </td>
+          </ng-container>
+  
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    
+       </div>
+  
+       <div class="pagination-container">
+        <button 
+          [disabled]="currentPage === 0"
+          (click)="previousPage.emit()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button 
+          [disabled]="currentPage >= totalPages - 1"
+          (click)="nextPage.emit()">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>   
+    </div>
