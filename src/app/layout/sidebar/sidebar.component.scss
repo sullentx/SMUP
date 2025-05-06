@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column; 
   background-color: #001F54;
-  
+    
 }
 
 .sidebar-content {
@@ -75,4 +75,27 @@
   position: relative;
   height: 100%;
 }
+
+
+.submenu {
+  padding-left: 30px;
+  transition: all 0.2s ease-in-out;
+  background-color: #034078;
+}
+.nav-subitem {
+  font-size: 0.9em;
+  color: #ffffff !important;
+
+  .nav-label {
+    color: white !important; 
+    font-size: 14px;
+  }
+  
+}
+.submenu-arrow {
+  margin-left: 10px;
+  align-items: center    ;
+}
+
+
 

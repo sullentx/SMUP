@@ -1,25 +1,101 @@
 .table-container {
-  width: 100%;
-  overflow-x: auto;
-}
+  padding: 16px;
+  border-radius: 8px;
+  font-family: poppins, sans-serif;
 
-table {
-  width: 100%;
-}
+  
+  .custom-table {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    overflow: hidden;
+    
+    .mat-row {
+      height: 56px;
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: #ffffff;
+      }
+      
+      &:nth-child(even) {
+        background-color: #ffffff;
+      }
+    }
+    
+    .mat-header-row {
+      background-color: #ffffff;
+      height: 48px;
+    }
+    
+    .mat-cell, .mat-header-cell {
+      padding: 0 16px;
+      font-family: 'Poppins', sans-serif; // Aplicar Poppins a todas las celdas
 
-.mat-column-actions {
-  width: 120px;
-  text-align: center;
-}
+    }
+    
+    .mat-header-cell {
+      color: rgba(0, 0, 0, 0.7);
+      font-weight: 500;
+      font-size: 14px;
+    }
+    
+    .mat-cell {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 14px;
+    }
+    
+    .mat-column-actions {
+      width: 120px;
+      text-align: center;
+      
+      .edit-button, .delete-button {
+        width: 40px;
+        height: 40px;
+        border: none;            
+        outline: none;          
+        background-color: #034078;
+        border-radius: 8px;      
+        cursor: pointer;         
+        padding: 8px;            
+        margin: 0 2px;           
+        display: inline-flex;    
+        align-items: center;     
+        justify-content: center; 
+        transition: all 0.2s ease; 
+        
+      }
 
-.pagination-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 16px;
-  padding: 8px 0;
-}
+      
+      .action-icon {
+        width: 20px; 
+        height: 20px;
+       
+      }
+    }
+  }
+  
+  .pagination-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+    padding: 8px;
+    
+    button {
+      width: 40px;
+      height: 40px;
+      border: none;            
+      outline: none;          
+      background-color: #B1CDFB;
+      border-radius: 8px;      
+      cursor: pointer;         
+      padding: 8px;            
+      margin: 0 4px;           
+      display: inline-flex;    
+      align-items: center;     
+      justify-content: center; 
+      transition: all 0.2s ease; 
 
-.page-info {
-  margin: 0 16px;
+    }
+  }
 }

@@ -1,26 +1,74 @@
 <div class="medication-list-container">
+  <div class="button-group">
     <app-back-button (clicked)="onBack()"></app-back-button>
+    <app-add-button (clicked)="onAddMedication()"></app-add-button>
+  </div>
   <div class="horizontal-line"></div>
     <div class="header-container">
       <h1>Medicamentos</h1>
     </div>
     
     <div class="actions-row">
-      <mat-form-field appearance="outline" class="search-field">
-        <mat-label>Buscar</mat-label>
-        <input matInput [(ngModel)]="searchTerm" (keyup)="onSearch()" placeholder="Código o nombre">
-        <button 
-          *ngIf="searchTerm" 
-          matSuffix 
-          mat-icon-button 
-          aria-label="Clear" 
-          (click)="searchTerm=''; onSearch()">
-          <mat-icon>close</mat-icon>
-        </button>
-        <mat-icon matSuffix *ngIf="!searchTerm">search</mat-icon>
-      </mat-form-field>
+
+      <div class="custom-search-container">
+        <div class="search-input-wrapper">
+          <img src="/search.png" alt="Buscar" class="search-icon">
+          <input 
+            type="text"
+            [(ngModel)]="searchTerm"
+            (keyup)="onSearch()"
+            placeholder="Buscar..."
+            class="search-input">
+          <button 
+            *ngIf="searchTerm" 
+            class="clear-button"
+            (click)="searchTerm=''; onSearch()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
       
-      <app-add-button (clicked)="onAddMedication()"></app-add-button>
+      <div class="filters-container">
+        <button mat-button [matMenuTriggerFor]="sortMenu" class="custom-icon-button">
+          <span>Ordenar Por</span>
+          <img src="/selector.png" alt="Ordenar" class="custom-icon">
+        </button>
+        <mat-menu #sortMenu="matMenu">
+          <button mat-menu-item (click)="sortBy('name')">
+            <span>Nombre</span>
+            <mat-icon *ngIf="sortCriteria === 'name'">check</mat-icon>
+          </button>
+          <button mat-menu-item (click)="sortBy('code')">
+            <span>Código</span>
+            <mat-icon *ngIf="sortCriteria === 'code'">check</mat-icon>
+          </button>
+          <button mat-menu-item (click)="sortBy('stock')">
+            <span>Stock</span>
+            <mat-icon *ngIf="sortCriteria === 'stock'">check</mat-icon>
+          </button>
+        </mat-menu>
+
+        <div class="vertical-divider"></div>
+        
+        <button mat-button [matMenuTriggerFor]="filterMenu" class="custom-icon-button">
+          <span>Filtrar Por</span>
+          <img src="/filter.png" alt="Filtrar" class="custom-icon">
+        </button>
+        <mat-menu #filterMenu="matMenu">
+          <button mat-menu-item (click)="filterBy('all')">
+            <span>Todos</span>
+            <mat-icon *ngIf="filterCriteria === 'all'">check</mat-icon>
+          </button>
+          <button mat-menu-item (click)="filterBy('lowStock')">
+            <span>Stock bajo</span>
+            <mat-icon *ngIf="filterCriteria === 'lowStock'">check</mat-icon>
+          </button>
+          <button mat-menu-item (click)="filterBy('expired')">
+            <span>Próximos a vencer</span>
+            <mat-icon *ngIf="filterCriteria === 'expired'">check</mat-icon>
+          </button>
+        </mat-menu>
+      </div>
     </div>
     
     <app-medication-table
