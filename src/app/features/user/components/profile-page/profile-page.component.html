@@ -1,0 +1,97 @@
+<div class="button-group">
+  <app-back-button (clicked)="onBack()"></app-back-button>
+</div>
+<div class="horizontal-line"></div>
+<div class="header-container">
+  <h1>PERFIL</h1>
+</div>
+
+<div class="profile-container" [ngClass]="{'reduced-height': showPasswordForm}">
+  <!-- Contenedor con fondo de color diferente y la imagen de perfil -->
+  <div class="profile-highlight-container">
+    <div class="profile-image-container">
+      <img src="/logPerson.png" alt="Foto de perfil" class="profile-image">
+    </div>
+    <div class="profile-quick-info">
+      <div class="profile-id">ID: {{user?.id}}</div>
+      <div class="profile-profession">{{user?.profesion}}</div>
+    </div>
+  </div>
+
+  <div class="profile-content-area">
+    <div class="profile-details">
+      <div class="profile-detail-group">
+        <div class="profile-detail-value-name">{{user?.nombre}} {{user?.apellidos}}</div>
+      </div>
+
+      <div class="profile-detail-group">
+        <div class="profile-detail-value-email">{{user?.email}}</div>
+      </div>
+      
+      <!-- Este grupo se oculta cuando se muestra el formulario de contraseña -->
+      <div class="profile-detail-group" *ngIf="!showPasswordForm">
+        <h3 class="profile-detail-label-date">Fecha de nacimiento</h3>
+        <div class="profile-detail-value-date">{{user?.fechaNacimiento | date:'dd/MM/yyyy'}}</div>
+      </div>
+    </div>
+
+    <div class="change-password-container" *ngIf="!showPasswordForm">
+      <button (click)="togglePasswordForm()">
+        Cambiar contraseña
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Formulario para cambiar contraseña (fuera del contenedor principal) -->
+<div class="password-change-section" *ngIf="showPasswordForm">
+  <div class="password-header">
+    <img src="/user-edit.png" alt="Cambiar contraseña" class="lock-icon">
+    <h2>Cambio de contraseña</h2>
+  </div>
+
+  <div class="password-form-container">
+    <form [formGroup]="passwordForm" (ngSubmit)="saveNewPassword()">
+      <div class="password-input-group">
+        <label for="currentPassword">Contraseña actual</label>
+        <input 
+          type="password" 
+          id="currentPassword" 
+          formControlName="currentPassword">
+        <div class="input-hint">Ingresa tu contraseña actual para verificar tu identidad</div>
+        <div class="error-message" *ngIf="passwordForm.get('currentPassword')?.invalid && passwordForm.get('currentPassword')?.touched">
+          La contraseña actual es requerida
+        </div>
+      </div>
+
+      <div class="password-input-group">
+        <label for="newPassword">Nueva contraseña</label>
+        <input 
+          type="password" 
+          id="newPassword" 
+          formControlName="newPassword">
+        <div class="input-hint">Mínimo 8 caracteres, combinando letras [mayúsculas y minúsculas] y números.</div>
+        <div class="error-message" *ngIf="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched">
+          La nueva contraseña no cumple con los requisitos
+        </div>
+      </div>
+
+      <div class="password-input-group">
+        <label for="confirmPassword">Confirmar contraseña</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          formControlName="confirmPassword">
+        <div class="input-hint">Vuelve a escribir tu nueva contraseña para confirmar</div>
+        <div class="error-message" *ngIf="passwordForm.get('confirmPassword')?.invalid && passwordForm.get('confirmPassword')?.touched">
+          La nueva contraseña y la confirmación deben ser idénticas.
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" class="cancel-button" (click)="togglePasswordForm()">Cancelar</button>
+        <button type="submit" class="save-button" [disabled]="passwordForm.invalid">Guardar nueva contraseña</button>
+      </div>
+    </form>
+  </div>
+</div>

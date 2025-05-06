@@ -20,14 +20,17 @@
         
         <div class="vertical-divider"></div>
         
-        <div class="user-container">
-          <img src="logPerson.png" alt="Usuario" class="user-avatar">
-          <div class="user-info">
-            <div class="welcome-text">Bienvenido</div>
-            <div class="user-name">{{userName}}</div>
+        <div class="user-section">
+          <div class="user-info-container" (click)="goToProfile()">
+            <img src="logPerson.png" alt="Usuario" class="user-avatar">
+            <div class="user-info">
+              <div class="welcome-text">Bienvenido</div>
+              <div class="user-name">{{userName}}</div>
+            </div>
           </div>
+          
           <button mat-icon-button class="logout-button" aria-label="Cerrar sesión">
-            <img src="log-out-04.png" alt="Usuario" class="user-avatar">
+            <img src="log-out-04.png" alt="Logout" class="logout-icon">
           </button>
         </div>
       </mat-toolbar>

@@ -51,6 +51,11 @@ export const routes: Routes = [
         loadComponent: () => import('./features/registros/personal-externo/pages/personal-externo-page/personal-externo-page.component')
           .then(c => c.PersonalExternoPageComponent)
       },
+      {
+        path: 'profile',
+        loadComponent: () => import('./features/user/components/profile-page/profile-page.component')
+          .then(c => c.ProfilePageComponent)
+      },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
   }
