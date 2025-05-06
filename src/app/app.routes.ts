@@ -66,6 +66,11 @@ export const routes: Routes = [
         loadComponent: () => import('./features/surveys/components/pages/create-survey/create-survey.component')
           .then(c => c.CreateSurveyComponent)
       },
+      {
+        path: 'surveys/assign-questions',
+        loadComponent: () => import('./features/surveys/components/pages/assign-questions/assign-questions.component')
+          .then(c => c.AssignQuestionsComponent)
+      },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
   }

@@ -65,12 +65,10 @@
   position: relative;
   overflow: hidden;
   
-  /* Nuevo estilo de hover */
   &:hover {
     color: #C5DDFF;
     transform: translateY(-2px);
     
-    /* Añadir un sutil resplandor */
     &:after {
       opacity: 1;
       transform: scaleX(1);
@@ -81,13 +79,11 @@
     }
   }
   
-  /* Efecto cuando se presiona */
   &:active {
     transform: translateY(0);
     opacity: 0.9;
   }
   
-  /* Efecto de resplandor sutil sin la línea */
   &:after {
     content: '';
     position: absolute;

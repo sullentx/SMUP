@@ -22,4 +22,7 @@ export class SurveysHomeComponent {
   onCreateSurvey(): void {
     this.router.navigate(['/surveys/create']);
   }
+  onAssignQuestions(): void {
+    this.router.navigate(['/surveys/assign-questions']);
+  }
 }

@@ -47,12 +47,9 @@ export class CreateSurveyComponent implements OnInit {
   
   onSave(): void {
     if (this.surveyForm.valid) {
-      // Guardar la encuesta y mostrar mensaje de éxito
       console.log('Formulario enviado:', this.surveyForm.value);
       
-      // Simulamos la operación de guardado (reemplaza esto con tu lógica real)
       setTimeout(() => {
-        // Mostrar mensaje de éxito usando DialogService
         this.dialogService.success(
           'La encuesta ha sido creada correctamente.',
           'Encuesta Creada',
