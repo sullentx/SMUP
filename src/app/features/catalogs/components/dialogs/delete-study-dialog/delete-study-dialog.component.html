@@ -1,0 +1,24 @@
+<div class="confirmation-dialog">
+    <div class="dialog-content">
+  
+      <!-- Columna izquierda -->
+      <div class="left-section">
+        <div class="icon-container">
+          <img *ngIf="data.image" [src]="data.image" alt="icono" class="custom-icon-image" />       
+        </div>
+  
+        <div class="text-container">
+          <h2>{{ data.title }}</h2>
+          <span class="message">{{ data.message }}</span>
+        </div>
+      </div>
+  
+      <!-- Columna derecha: botones -->
+      <div class="dialog-actions">
+        <button mat-raised-button (click)="onConfirm()" class="confirm-button">Confirmar</button>
+        <button mat-button (click)="onCancel()" class="cancel-button">Cancelar</button>
+      </div>
+  
+    </div>
+  </div>
+  

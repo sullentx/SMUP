@@ -1,0 +1,36 @@
+<div class="catalog-container">
+    <div class="controls">
+      <input type="text" placeholder="🔍 Buscar..." [(ngModel)]="searchTerm" />
+      <div class="right-controls">
+        <button>Ordenar por ⬇</button>
+        <button>⚙️ Filtrar</button>
+      </div>
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of paginatedList">
+          <td>{{ item.id | number: '3.0' }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.description }}</td>
+          <td class="actions">
+            <app-edit-button (clicked)="onEdit(item)"></app-edit-button>
+            <app-delete-button (clicked)="onDelete(item)"></app-delete-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">←</button>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages()">→</button>
+    </div>
+  </div>
+  

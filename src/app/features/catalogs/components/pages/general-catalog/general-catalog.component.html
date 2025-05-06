@@ -1,0 +1,13 @@
+<div class="catalog-page-container">
+  <app-back-button (clicked)="onBack()"></app-back-button>
+  <div class="horizontal-line"></div>
+
+  <div class="header-container">
+    <h1>Catálogo General</h1>
+    <button mat-raised-button color="primary" (click)="openNewCatalogDialog()">
+      Agregar +
+    </button>
+  </div>
+
+  <app-general-catalog-list></app-general-catalog-list>
+</div>

@@ -1,0 +1,74 @@
+<form [formGroup]="form">
+  <div class="field-title">Paciente:</div>
+  <mat-form-field appearance="fill">
+    <input matInput formControlName="paciente" placeholder="Buscar" />
+    <mat-error *ngIf="form.get('paciente')?.invalid">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <div class="fields-row">
+    <div class="field-pair">
+      <div class="field-item">
+        <div class="field-title">Personal de Salud:</div>
+        <mat-form-field appearance="fill">
+          <input matInput formControlName="personalSalud" placeholder="Seleccionar" />
+          <mat-error *ngIf="form.get('personalSalud')?.invalid">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="field-item">
+        <div class="field-title">Fecha de Consulta:</div>
+        <app-datepicker
+          [required]="true"
+          [showError]="!!form.get('fechaConsulta')?.invalid && !!form.get('fechaConsulta')?.touched"
+          (dateSelected)="form.get('fechaConsulta')?.setValue($event)">
+        </app-datepicker>
+      </div>
+    </div>
+
+    <div class="field-pair">
+      <div class="field-item">
+        <div class="field-title">Hora de inicio:</div>
+        <mat-form-field appearance="fill">
+          <input matInput type="time" formControlName="horaInicio" placeholder="Escribir" />
+          <mat-error *ngIf="form.get('horaInicio')?.invalid">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="field-item">
+        <div class="field-title">Hora de fin:</div>
+        <mat-form-field appearance="fill">
+          <input matInput type="time" formControlName="horaFin" placeholder="Escribir" />
+          <mat-error *ngIf="form.get('horaFin')?.invalid">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="field-pair">
+      <div class="field-item">
+        <div class="field-title">Fecha de la intervención:</div>
+        <app-datepicker
+          [required]="true"
+          label="Fecha de la intervención"
+          [showError]="!!form.get('fechaIntervencion')?.invalid && !!form.get('fechaIntervencion')?.touched"
+          (dateSelected)="form.get('fechaIntervencion')?.setValue($event)">
+        </app-datepicker>
+      </div>
+
+      <div class="field-item">
+        <div class="field-title">Tipo de intervención:</div>
+        <mat-form-field appearance="fill">
+          <mat-select formControlName="tipoIntervencion">
+            <mat-option *ngFor="let tipo of tiposIntervencion" [value]="tipo">{{ tipo }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('tipoIntervencion')?.invalid">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-title">Descripción de la intervención:</div>
+  <mat-form-field appearance="fill" class="diagnostico-textarea">
+    <textarea matInput formControlName="descripcionIntervencion" placeholder="Escribir"></textarea>
+    <mat-error *ngIf="form.get('descripcionIntervencion')?.invalid">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+</form>
