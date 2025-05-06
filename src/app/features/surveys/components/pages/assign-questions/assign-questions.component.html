@@ -1,0 +1,94 @@
+
+<div class="header-actions">
+  <div class="left-section">
+    <app-back-button (clicked)="onBack()"></app-back-button>
+  </div>
+  <div class="right-section">
+    <button class="cancel-button" (click)="onCancel()">Cancelar</button>
+    <button class="save-button" [disabled]="!canSave()" (click)="onSave()">Guardar</button>
+  </div>
+</div>
+<div class="horizontal-line"></div>
+
+<div class="container">  
+  <div class="header-container">
+    <img src="/file-attachment-04.png" alt="" class="header-icon">
+    <h1>Asignar Preguntas a Encuestas</h1>
+  </div>
+  
+  <div class="content-container">
+    <!-- Primera fila: ENCUESTAS CREADAS -->
+    <div class="list-box">
+      <div class="list-header">
+        <h2>ENCUESTAS CREADAS</h2>
+      </div>
+      
+      <div class="list-content">
+        <div *ngIf="surveys.length === 0" class="empty-message">
+          No se encontraron encuestas disponibles
+        </div>
+        
+        <div 
+          *ngFor="let survey of surveys" 
+          class="list-item"
+          [ngClass]="{'selected': isSelectedSurvey(survey.id)}"
+          (click)="toggleSurveySelection(survey.id)">
+          
+          <div class="checkbox-container">
+            <input 
+              type="checkbox" 
+              [id]="'survey-' + survey.id" 
+              [checked]="isSelectedSurvey(survey.id)"
+              (change)="toggleSurveySelection(survey.id)">
+            <label [for]="'survey-' + survey.id"></label>
+          </div>
+          
+          <div class="item-details">
+            <h3>Encuesta {{survey.id}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Segunda fila: PREGUNTAS -->
+    <div class="list-box">
+      <div class="list-header">
+        <h2>PREGUNTAS</h2>
+      </div>
+      
+      <div class="list-content">
+        <div *ngIf="questions.length === 0" class="empty-message">
+          No se encontraron preguntas disponibles
+        </div>
+        
+        <div 
+          *ngFor="let question of questions" 
+          class="list-item"
+          [ngClass]="{
+            'selected': isSelectedQuestion(question.id),
+            'disabled': isQuestionAlreadyAssigned(question.id)
+          }"
+          (click)="toggleQuestionSelection(question.id)">
+          
+          <div class="checkbox-container">
+            <input 
+              type="checkbox" 
+              [id]="'question-' + question.id" 
+              [checked]="isSelectedQuestion(question.id)"
+              [disabled]="isQuestionAlreadyAssigned(question.id)"
+              (change)="toggleQuestionSelection(question.id)">
+            <label [for]="'question-' + question.id"></label>
+          </div>
+          
+          <div class="item-details">
+            <h3>Pregunta {{question.id}}</h3>
+            <div *ngIf="isQuestionAlreadyAssigned(question.id)" class="already-assigned">
+              Ya asignada a esta encuesta
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

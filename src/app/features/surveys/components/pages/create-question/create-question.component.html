@@ -1,0 +1,82 @@
+<div class="header-actions">
+    <div class="left-section">
+      <app-back-button (clicked)="onBack()"></app-back-button>
+    </div>
+    <div class="right-section">
+      <button class="cancel-button" (click)="onCancel()">Cancelar</button>
+      <button class="save-button" [disabled]="questionForm.invalid" (click)="onSave()">Guardar</button>
+    </div>
+  </div>
+  <div class="horizontal-line"></div>
+
+<div class="container">
+
+    <div class="header-container">
+      <img src="/file-plus-02 (2).png" alt="" class="header-icon">
+      <h1>Crear Pregunta</h1>
+    </div>
+    
+    <div class="question-form-container">
+      <form [formGroup]="questionForm" class="question-form">
+        <!-- Texto de la pregunta -->
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="questionText">Texto de la pregunta</label>
+            <input 
+              type="text" 
+              id="questionText" 
+              formControlName="questionText"
+              placeholder="Ingrese el texto de la pregunta"
+              class="form-input">
+            <div class="error-message" *ngIf="questionForm.get('questionText')?.invalid && questionForm.get('questionText')?.touched">
+              El texto de la pregunta es obligatorio
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tipo de pregunta -->
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="questionType">Tipo de pregunta</label>
+            <div class="select-container">
+              <select 
+                id="questionType" 
+                formControlName="questionType"
+                class="form-select">
+                <option value="" disabled>Seleccione un tipo</option>
+                <option value="free_text">Texto libre</option>
+                <option value="multiple_choice">Selección múltiple</option>
+                <option value="single_choice">Selección única</option>
+              </select>
+              <div class="select-arrow"></div>
+            </div>
+            <div class="error-message" *ngIf="questionForm.get('questionType')?.invalid && questionForm.get('questionType')?.touched">
+              Debe seleccionar un tipo de pregunta
+            </div>
+          </div>
+        </div>
+        
+        <!-- Selección de carrera -->
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="career">Carrera</label>
+            <div class="select-container">
+              <select 
+                id="career" 
+                formControlName="career"
+                class="form-select">
+                <option value="" disabled>Seleccione una carrera</option>
+                <option *ngFor="let career of careers" [value]="career.id">
+                  {{career.name}}
+                </option>
+              </select>
+              <div class="select-arrow"></div>
+            </div>
+            <div class="error-message" *ngIf="questionForm.get('career')?.invalid && questionForm.get('career')?.touched">
+              Debe seleccionar una carrera
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
