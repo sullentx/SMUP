@@ -56,6 +56,16 @@ export const routes: Routes = [
         loadComponent: () => import('./features/user/components/profile-page/profile-page.component')
           .then(c => c.ProfilePageComponent)
       },
+      {
+        path:'surveys',
+        loadComponent:() => import('./features/surveys/components/pages/surveys-home/surveys-home.component')
+        .then(c => c.SurveysHomeComponent)
+      },
+      {
+        path: 'surveys/create',
+        loadComponent: () => import('./features/surveys/components/pages/create-survey/create-survey.component')
+          .then(c => c.CreateSurveyComponent)
+      },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
   }

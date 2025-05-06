@@ -7,18 +7,17 @@
   border-radius: 16px;
   background-color: #001F54;
   position: relative;
-  transition: height 0.3s ease; // Añadir transición para suavizar el cambio de altura
+  transition: height 0.3s ease; 
   
   &.reduced-height {
-    height: 277px; // Altura reducida cuando se muestra el formulario
+    height: 277px; 
     
-    // Ajustes específicos para la versión con altura reducida
     .profile-highlight-container {
-      height: 140px; // Reducir altura del contenedor destacado
+      height: 140px; 
     }
     
     .profile-content-area {
-      height: calc(100% - 140px - 24px); // Ajustar altura del área de contenido
+      height: calc(100% - 140px - 24px); 
     }
     
     .profile-image-container .profile-image {
@@ -27,16 +26,15 @@
     }
     
     .profile-detail-value-name {
-      font-size: 28px; // Reducir tamaño de fuente
+      font-size: 28px; 
     }
     
     .profile-detail-label-date {
-      font-size: 18px; // Reducir tamaño de fuente
+      font-size: 18px; 
     }
   }
 }
 
-// Si necesitas más ajustes específicos para la vista reducida, añádelos aquí
   
   .header-container {
     display: flex;
