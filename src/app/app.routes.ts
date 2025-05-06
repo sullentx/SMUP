@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { ChartDisplayComponent } from './features/statistics/components/chart-display/chart-display.component';
+import { StatisticDataResolver } from './features/statistics/resolvers/statistic-data.resolver';
 
 export const routes: Routes = [
   {
@@ -125,6 +127,18 @@ export const routes: Routes = [
         path: 'surveys/notify-respondents/:surveyId',
         loadComponent: () => import('./features/surveys/components/pages/notify-respondents/notify-respondents.component')
           .then(c => c.NotifyRespondentsComponent)
+      },
+
+      {
+        path: 'statistics',
+        loadComponent: () => import('./features/statistics/components/pages/statistics-home/statistics-home.component').then(c => c.StatisticsHomeComponent)
+      },
+      {
+        path: 'statistics/:id',
+        component: ChartDisplayComponent,
+        resolve: {
+          statisticData: StatisticDataResolver
+        }
       },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]

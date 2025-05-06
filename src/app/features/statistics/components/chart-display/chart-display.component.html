@@ -1,0 +1,48 @@
+<div class="button-group">
+  <app-back-button (clicked)="onBack()"></app-back-button>
+</div>
+<div class="horizontal-line"></div>
+
+<div class="chart-container">
+  <div class="header-actions">
+    <img src="/box.png" alt="">
+    <h1 class="chart-title">{{statisticName}}</h1>
+  </div>
+  
+  <div class="chart-layout">
+    <!-- Columna de la gráfica -->
+    <div class="chart-column">
+      <div *ngIf="isLoading" class="loading-indicator">
+        <p>Cargando datos...</p>
+      </div>
+      
+      <div *ngIf="error" class="error-message">
+        <p>{{error}}</p>
+      </div>
+      
+      <div *ngIf="!isLoading && !error" class="chart-wrapper">
+        <canvas #chartCanvas></canvas>
+      </div>
+    </div>
+    
+    <!-- Columna de datos -->
+<!-- Columna de datos -->
+<div class="data-column">
+  <h2>Datos</h2>
+  <div class="data-table" *ngIf="!isLoading && !error">
+    <div class="data-header">
+      <span></span> <!-- Espacio para el indicador de color -->
+      <span>Categoría</span>
+      <span>Cantidad</span>
+      <span>Porcentaje</span>
+    </div>
+    <div class="data-row" *ngFor="let label of chartData.labels; let i = index">
+      <div class="color-indicator" [style.background-color]="getColorForIndex(i)"></div>
+      <span class="category-name">{{ label }}</span>
+      <span class="data-value">{{ chartData.data[i] }}</span>
+      <span class="data-percentage">{{ calculatePercentage(i) }}%</span>
+    </div>
+  </div>
+</div>
+  </div>
+</div>

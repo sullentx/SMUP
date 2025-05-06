@@ -1,0 +1,27 @@
+<div class="statistics-table-container">
+    <table class="statistics-table">
+      <tbody>
+        <tr *ngFor="let statistic of paginatedStatistics" (click)="navigateToChart(statistic.id)">
+          <td class="id-cell">{{ statistic.id }}</td>
+          <td>{{ statistic.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div *ngIf="paginatedStatistics.length === 0" class="empty-state">
+      <p>No hay estadísticas disponibles</p>
+    </div>
+    
+    <div class="pagination-container">
+      <button 
+        [disabled]="currentPage === 0"
+        (click)="onPreviousPage()">
+        <span class="material-icons">chevron_left</span>
+      </button>
+      <button 
+        [disabled]="currentPage >= totalPages - 1"
+        (click)="onNextPage()">
+        <span class="material-icons">chevron_right</span>
+      </button>
+    </div>
+  </div>

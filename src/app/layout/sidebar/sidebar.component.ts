@@ -39,7 +39,7 @@ export class SidebarComponent implements OnChanges{
     { name: 'Medicamentos', iconType: 'image', imgSrc: '/medical-circle.png', route: '/medications' },    
     { name: 'Catálogos', iconType: 'image', imgSrc: '/folder.png', route: '/proyectos' },  
     { name: 'Cuentas', iconType: 'image', imgSrc: '/user-plus-01.png', route: '/proyectos' },    
-    { name: 'Estadísticas', iconType: 'image', imgSrc: '/file-07.png', route: '/proyectos' },  
+    { name: 'Estadísticas', iconType: 'image', imgSrc: '/file-07.png', route: '/statistics' },  
     { name: 'Encuestas', iconType: 'image', imgSrc: '/file-attachment-04.png', route: '/surveys' },    
   
   ];
