@@ -1,0 +1,20 @@
+<h2 class="title">Editar Estudio</h2>
+
+<form [formGroup]="studyForm" class="form-container">
+  <label for="name">Nombre:</label>
+  <input id="name" formControlName="name" placeholder="Escribir" />
+  <div *ngIf="studyForm.get('name')?.invalid && studyForm.get('name')?.touched" class="error">
+    El nombre es obligatorio.
+  </div>
+
+  <label for="description">Descripción:</label>
+  <input id="description" formControlName="description" placeholder="Escribir" />
+  <div *ngIf="studyForm.get('description')?.invalid && studyForm.get('description')?.touched" class="error">
+    La descripción es obligatoria.
+  </div>
+</form>
+
+<div class="button-group">
+  <button mat-button class="cancel-button" (click)="onCancel()">Cancelar</button>
+  <button mat-button class="save-button" (click)="onSave()">Actualizar</button>
+</div>

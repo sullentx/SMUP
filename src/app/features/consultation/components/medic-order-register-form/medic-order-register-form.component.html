@@ -1,0 +1,74 @@
+<form [formGroup]="form">
+  <div class="section-title">Datos de la orden de estudios</div>
+
+  <div class="field-pair">
+    <div class="field-item">
+      <div class="field-title">ID Consulta:</div>
+      <mat-form-field appearance="fill">
+        <mat-select formControlName="idConsulta" placeholder="Seleccionar..." [disabled]="true">
+          <mat-option *ngFor="let consulta of consultas" [value]="consulta">
+            {{ consulta }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('idConsulta')?.invalid">Campo obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="field-item">
+      <div class="field-title">ID Estudio:</div>
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="Escribir..." formControlName="idEstudio" [disabled]="true" />
+        <mat-error *ngIf="form.get('idEstudio')?.invalid">Campo obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="field-title">Personal de Salud:</div>
+  <mat-form-field appearance="fill" class="full-width">
+    <input matInput placeholder="Escribir..." formControlName="personalSalud" />
+    <mat-error *ngIf="form.get('personalSalud')?.invalid">Campo obligatorio</mat-error>
+  </mat-form-field>
+
+  <div class="section-title">Datos del resultado</div>
+
+  <div class="field-pair">
+    <div class="field-item">
+      <div class="field-title">ID Resultado:</div>
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="Escribir..." formControlName="idResultado" [disabled]="true" />
+        <mat-error *ngIf="form.get('idResultado')?.invalid">Campo obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="field-item">
+      <div class="field-title">Laboratorio:</div>
+      <mat-form-field appearance="fill">
+        <mat-select formControlName="laboratorio" placeholder="Seleccionar...">
+          <mat-option *ngFor="let lab of laboratorios" [value]="lab">
+            {{ lab }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('laboratorio')?.invalid">Campo obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="field-pair">
+    <div class="field-item">
+      <div class="field-title">Resultado:</div>
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="Escribir..." formControlName="resultado" />
+        <mat-error *ngIf="form.get('resultado')?.invalid">Campo obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="field-item">
+      <div class="field-title">Fecha del resultado:</div>
+      <app-datepicker
+        [required]="true"
+        [showError]="!!form.get('fechaResultado')?.invalid && !!form.get('fechaResultado')?.touched"
+        (dateSelected)="form.get('fechaResultado')?.setValue($event)">
+      </app-datepicker>
+    </div>
+  </div>
+</form>

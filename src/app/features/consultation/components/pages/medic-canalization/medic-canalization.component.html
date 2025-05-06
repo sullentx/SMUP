@@ -1,0 +1,17 @@
+<div class="canalization-page-container"> 
+    <app-back-button (clicked)="onBack()"></app-back-button>
+    <div class="horizontal-line"></div>
+  
+    <div class="header-container">
+      <h1>Canalización médica</h1>
+      <p>Por favor, complete todos los campos obligatorios.</p>
+    </div>
+  
+    <app-canalization-form></app-canalization-form>
+  
+    <div class="form-actions">
+      <button mat-raised-button color="primary" (click)="onGuardar()">Guardar canalización</button>
+      <button mat-raised-button color="warn" (click)="onCancelar()">Cancelar canalización</button>
+    </div>
+  </div>
+  

@@ -1,0 +1,18 @@
+<div class="intervention-page-container">
+    <app-back-button (clicked)="onBack()"></app-back-button>
+    <div class="horizontal-line"></div>
+  
+    <div class="header-container">
+      <h1>Registro de orden de estudios</h1>
+      <p>Por favor, complete todos los campos obligatorios para registrar una orden de estudio.</p>
+    </div>
+  
+    <app-medic-order-register-form></app-medic-order-register-form>
+  
+    <div class="form-actions">
+      <button mat-raised-button color="primary" (click)="onGuardarOrden()">
+        Guardar orden médica
+      </button>
+    </div>
+  </div>
+  

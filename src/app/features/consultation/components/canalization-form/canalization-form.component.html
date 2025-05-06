@@ -1,0 +1,58 @@
+<form [formGroup]="form">
+  <div class="fields-row">
+    <div class="field-item">
+      <div class="field-title">ID de Consulta</div>
+      <mat-form-field appearance="fill">
+        <input matInput formControlName="idConsulta" placeholder="Escribe..." />
+        <mat-error *ngIf="form.get('idConsulta')?.invalid">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="field-item">
+      <div class="field-title">Área de Adscripción</div>
+      <mat-form-field appearance="fill">
+        <mat-select formControlName="areaAdscripcion" placeholder="Selecciona...">
+          <mat-option *ngFor="let area of areas" [value]="area">{{ area }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('areaAdscripcion')?.invalid">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="fields-row">
+    <div class="field-item">
+      <div class="field-title">Hora</div>
+      <mat-form-field appearance="fill">
+        <input matInput type="time" formControlName="hora" placeholder="Escribir" />
+        <mat-error *ngIf="form.get('hora')?.invalid">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="field-item">
+      <div class="field-title">Paciente</div>
+      <mat-form-field appearance="fill">
+        <input matInput formControlName="paciente" placeholder="Escribe..." />
+        <mat-error *ngIf="form.get('paciente')?.invalid">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="fields-row">
+    <div class="field-item">
+      <div class="field-title">Fecha de Canalización</div>
+      <app-datepicker
+        [required]="true"
+        [showError]="!!form.get('fechaCanalizacion')?.invalid && !!form.get('fechaCanalizacion')?.touched"
+        (dateSelected)="form.get('fechaCanalizacion')?.setValue($event)">
+      </app-datepicker>
+    </div>
+
+    <div class="field-item">
+      <div class="field-title">Descripción</div>
+      <mat-form-field appearance="fill">
+        <textarea matInput formControlName="descripcion" placeholder="Escribe..."></textarea>
+        <mat-error *ngIf="form.get('descripcion')?.invalid">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

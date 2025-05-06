@@ -1,0 +1,91 @@
+<form [formGroup]="form">
+  <div class="fields-row">
+    <div class="field-pair">
+      <div class="field-item">
+        <div class="field-title">Nombre del paciente:</div>
+        <mat-form-field appearance="fill">
+          <input matInput formControlName="paciente" placeholder="Seleccionar" />
+          <mat-error *ngIf="form.get('paciente')?.hasError('required') && form.get('paciente')?.touched">
+            Campo obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="field-item">
+        <div class="field-title">Nombre del personal de Salud:</div>
+        <mat-form-field appearance="fill">
+          <input matInput formControlName="personalSalud" placeholder="Seleccionar" />
+          <mat-error *ngIf="form.get('personalSalud')?.hasError('required') && form.get('personalSalud')?.touched">
+            Campo obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="field-pair">
+      <div class="field-item">
+        <div class="field-title">Fecha de la consulta:</div>
+        <app-datepicker
+          [required]="true"
+          label="Fecha"
+          [showError]="false"
+          (dateSelected)="form.get('fechaConsulta')?.setValue($event)">
+        </app-datepicker>
+        <div class="error-text" *ngIf="form.get('fechaConsulta')?.hasError('required') && form.get('fechaConsulta')?.touched">
+          Campo obligatorio
+        </div>
+      </div>
+
+      <div class="field-item">
+        <div class="field-title">Hora de inicio de la consulta:</div>
+        <mat-form-field appearance="fill">
+          <input matInput type="time" formControlName="horaInicio" />
+          <mat-error *ngIf="form.get('horaInicio')?.hasError('required') && form.get('horaInicio')?.touched">
+            Campo obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="field-pair">
+      <div class="field-item">
+        <div class="field-title">Medicamento:</div>
+        <mat-form-field appearance="fill">
+          <input matInput formControlName="medicamento" placeholder="Seleccionar" />
+          <mat-error *ngIf="form.get('medicamento')?.hasError('required') && form.get('medicamento')?.touched">
+            Campo obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="field-pair">
+      <div class="field-item">
+        <div class="field-title">Dosis:</div>
+        <mat-form-field appearance="fill">
+          <input matInput formControlName="dosis" placeholder="Escribir" />
+          <mat-error *ngIf="form.get('dosis')?.hasError('required') && form.get('dosis')?.touched">
+            Campo obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="field-item">
+        <div class="field-title">Frecuencia:</div>
+        <mat-form-field appearance="fill">
+          <input matInput formControlName="frecuencia" placeholder="Escribir" />
+          <mat-error *ngIf="form.get('frecuencia')?.hasError('required') && form.get('frecuencia')?.touched">
+            Campo obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="field-item">
+      <div class="field-title">Notas:</div>
+      <mat-form-field appearance="fill">
+        <textarea matInput formControlName="notas" placeholder="Escribir (Opcional)"></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

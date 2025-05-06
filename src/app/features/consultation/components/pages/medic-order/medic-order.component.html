@@ -1,0 +1,16 @@
+<div class="intervention-page-container">
+    <app-back-button (clicked)="onBack()"></app-back-button>
+    <div class="horizontal-line"></div>
+  
+    <div class="header-container">
+      <h1>Orden de estudios</h1>
+      <p>Por favor, complete todos los campos obligatorios.</p>
+    </div>
+  
+    <app-medic-order-form></app-medic-order-form>
+  
+    <div class="form-actions">
+      <button mat-raised-button color="primary" (click)="onGenerarOrden()">Generar orden de estudios</button>
+    </div>
+  </div>
+  

@@ -1,0 +1,17 @@
+<div class="intervention-page-container">
+    <app-back-button (clicked)="onBack()"></app-back-button>
+    <div class="horizontal-line"></div>
+  
+    <div class="header-container">
+      <h1>Intervención médica</h1>
+      <p>Por favor, complete todos los campos obligatorios.</p>
+    </div>
+  
+    <app-medic-intervention-form></app-medic-intervention-form>
+  
+    <div class="form-actions">
+      <button mat-raised-button color="primary" (click)="onCanalizar()">Canalización</button>
+      <button mat-raised-button color="primary" (click)="onReceta()">Generar Receta</button>
+    </div>
+  </div>
+  

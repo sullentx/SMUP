@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+.horizontal-line {
+  border-top: 2px solid #ccc;
+  margin: 16px 0;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-top: 24px;
+  margin-right: 40px;
+}
+
+.form-actions button {
+  background-color: #353895 !important;
+  color: white !important;
+  font-family: 'Poppins', sans-serif;
+}
+
+.consultation-page-container {
+  font-family: 'Poppins', sans-serif;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    color: #03067B;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  button {
+    background-color: #353895;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+  }
+}
+
+
+.header-container p {
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 4px;
+}
+
+button {
+  background-color: #353895 !important;
+  color: white !important;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-end;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}

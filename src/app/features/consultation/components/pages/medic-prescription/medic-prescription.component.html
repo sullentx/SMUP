@@ -1,0 +1,18 @@
+<div class="intervention-page-container">
+    <app-back-button (clicked)="onBack()"></app-back-button>
+    <div class="horizontal-line"></div>
+  
+    <div class="header-container">
+      <h1>Receta médica</h1>
+      <p>Por favor, complete todos los campos obligatorios.</p>
+    </div>
+  
+    <app-medic-prescription-form></app-medic-prescription-form>
+  
+    <div class="form-actions">
+      <button mat-raised-button color="primary" (click)="onGenerarPrescripcion()">
+        Imprimir receta médica
+      </button>
+    </div>
+  </div>
+  

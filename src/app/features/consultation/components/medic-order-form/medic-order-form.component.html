@@ -1,0 +1,74 @@
+<form [formGroup]="form">
+  <div class="field-title">Paciente:</div>
+  <mat-form-field appearance="fill">
+    <input matInput formControlName="paciente" placeholder="Buscar" />
+    <mat-error *ngIf="form.get('paciente')?.invalid">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <div class="fields-row">
+    <div class="field-pair">
+      <div class="field-item">
+        <div class="field-title">Personal de Salud:</div>
+        <mat-form-field appearance="fill">
+          <input matInput formControlName="personalSalud" placeholder="Seleccionar" />
+          <mat-error *ngIf="form.get('personalSalud')?.invalid">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="field-item">
+        <div class="field-title">Fecha de Consulta:</div>
+        <app-datepicker
+          [required]="true"
+          [showError]="!!form.get('fechaConsulta')?.invalid && !!form.get('fechaConsulta')?.touched"
+          (dateSelected)="form.get('fechaConsulta')?.setValue($event)">
+        </app-datepicker>
+      </div>
+    </div>
+
+    <div class="field-pair">
+      <div class="field-item">
+        <div class="field-title">Hora de inicio:</div>
+        <mat-form-field appearance="fill">
+          <input matInput type="time" formControlName="horaInicio" placeholder="Escribir" />
+          <mat-error *ngIf="form.get('horaInicio')?.invalid">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="field-item">
+        <div class="field-title">Hora de fin:</div>
+        <mat-form-field appearance="fill">
+          <input matInput type="time" formControlName="horaFin" placeholder="Escribir" />
+          <mat-error *ngIf="form.get('horaFin')?.invalid">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="field-pair">
+      <div class="field-item">
+        <div class="field-title">Selección del estudio:</div>
+        <mat-form-field appearance="fill">
+          <mat-select formControlName="tipoEstudio">
+            <mat-option *ngFor="let estudio of estudios" [value]="estudio">{{ estudio }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('tipoEstudio')?.invalid">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="field-item">
+        <div class="field-title">Fecha de realización del estudio:</div>
+        <app-datepicker
+          [required]="true"
+          label="Fecha del estudio"
+          [showError]="!!form.get('fechaEstudio')?.invalid && !!form.get('fechaEstudio')?.touched"
+          (dateSelected)="form.get('fechaEstudio')?.setValue($event)">
+        </app-datepicker>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-title">Descripción:</div>
+  <mat-form-field appearance="fill" class="diagnostico-textarea">
+    <textarea matInput formControlName="descripcion" placeholder="Escribir"></textarea>
+    <mat-error *ngIf="form.get('descripcion')?.invalid">Este campo es obligatorio</mat-error>
+  </mat-form-field>
+</form>
