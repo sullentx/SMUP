@@ -24,7 +24,7 @@ export class MedicOrderPageComponent {
   constructor(private router: Router, private orderService: MedicOrderService) {}
 
   onBack(): void {
-    this.router.navigate(['/medic-order']);
+    this.router.navigate(['/home']);
   }
 
   onGenerarOrden(): void {

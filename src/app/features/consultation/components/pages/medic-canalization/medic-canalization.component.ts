@@ -23,7 +23,7 @@ export class MedicCanalizationPageComponent {
   constructor(private router: Router) {}
 
   onBack(): void {
-    this.router.navigate(['/medic-consultation']);
+    this.router.navigate(['/home']);
   }
 
   onGuardar(): void {

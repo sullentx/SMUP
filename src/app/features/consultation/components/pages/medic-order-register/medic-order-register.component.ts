@@ -29,7 +29,7 @@ export class MedicOrderRegisterPageComponent {
   ) {}
 
   onBack(): void {
-    this.router.navigate(['/medic-order-register']);
+    this.router.navigate(['/home']);
   }
 
   onGuardarOrden(): void {

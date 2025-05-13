@@ -29,7 +29,7 @@ export class MedicInterventionPageComponent {
   ) {}
 
   onBack(): void {
-    this.router.navigate(['/medic-intervention']);
+    this.router.navigate(['/home']);
   }
 
   onCanalizar(): void {

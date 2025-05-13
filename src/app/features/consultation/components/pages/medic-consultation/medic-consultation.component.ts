@@ -29,7 +29,7 @@ export class ConsultationPageComponent {
   ) {}
 
   onBack(): void {
-    this.router.navigate(['/medic-consultation']);
+    this.router.navigate(['/home']);
   }
 
   onCanalizar(): void {
@@ -37,37 +37,18 @@ export class ConsultationPageComponent {
   }
 
   onReceta(): void {
+    this.router.navigate(['/medic-prescription']);
+
+  }
+  
+  onFinalizar(): void {
     if (this.formComponent.form.valid) {
       const formValues: Consultation = this.formComponent.form.value;
-
       this.consultationService.setConsultation(formValues);
-
-      const doc = new jsPDF();
-      const imgUrl = 'prescription-pdf-2.jpg'; 
-      const img = new Image();
-      img.src = imgUrl;
-
-      img.onload = () => {
-        doc.addImage(img, 'PNG', 0, 0, 210, 297);
-        doc.setFontSize(18);
-        doc.text('Consulta Médica', 10, 60);
-        doc.setFontSize(12);
-        doc.text(`Paciente: ${formValues.paciente}`, 10, 80);
-        doc.text(`Personal de Salud: ${formValues.personalSalud}`, 10, 90);
-        const fechaConsulta = formValues.fechaConsulta ? new Date(formValues.fechaConsulta).toLocaleDateString() : 'No disponible';
-        doc.text(`Fecha de Consulta: ${fechaConsulta}`, 10, 100);
-        doc.text(`Hora de Inicio: ${formValues.horaInicio}`, 10, 110);
-        doc.text(`Hora de Fin: ${formValues.horaFin}`, 10, 120);
-        doc.text(`Diagnóstico: ${formValues.diagnostico}`, 10, 130);
-        doc.text(`Categoría: ${formValues.categoria}`, 10, 140);
-
-        doc.save('consulta-medica.pdf');
-        console.log('Consulta guardada:', formValues);
-
-        this.router.navigate(['/medic-prescription']);
-      };
+      console.log('Consulta finalizada:', formValues);
     } else {
       this.formComponent.form.markAllAsTouched();
     }
   }
+  
 }
