@@ -29,13 +29,14 @@ export class CanalizationFormComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
+      idConsulta: ['', Validators.required],
+      areaAdscripcion: ['', Validators.required],
+      hora: ['', Validators.required],
       paciente: ['', Validators.required],
-      personalSalud: ['', Validators.required],
-      motivo: ['', Validators.required],
-      unidadCanalizada: ['', Validators.required],
-      especialidad: ['', Validators.required],
-      fechaCanalizacion: ['', Validators.required]
+      fechaCanalizacion: ['', Validators.required],
+      descripcion: ['', Validators.required]
     });
+    
   }
 
   resetForm(): void {
@@ -45,6 +46,9 @@ export class CanalizationFormComponent {
   save(): void {
     if (this.form.valid) {
       console.log('Formulario enviado:', this.form.value);
+    } else {
+      console.log('Por favor, complete todos los campos.');
     }
   }
+  
 }

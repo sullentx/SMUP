@@ -29,7 +29,7 @@ export class MedicPrescriptionPageComponent {
   ) {}
 
   onBack(): void {
-    this.router.navigate(['/medic-prescription']);
+    this.router.navigate(['/home']);
   }
 
   onGenerarPrescripcion(): void {
